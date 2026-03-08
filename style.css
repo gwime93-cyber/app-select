@@ -881,9 +881,7 @@ button {
         page-break-after: always;
         break-after: page;
         page-break-inside: avoid;
-        /* iOS 모바일 대응: 종이에 꽉 차도록 강제 크기 지정 */
-        width: 100vw !important;
-        height: 100vh !important;
+        /* 고정 너비(vw)를 제거하여 JS의 mm 규격이 우선되도록 함 */
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }

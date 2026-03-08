@@ -612,9 +612,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 pageEl.setAttribute('data-card-type', cardType);
                 pageEl.setAttribute('data-border', borderStyle);
 
-                // 핵심: 종이 크기를 인라인 스타일로 직접 지정
-                pageEl.style.width = pageW;
-                pageEl.style.height = pageH;
+                // 핵심: 종이 크기를 인라인 스타일로 직접 지정 (!important를 붙여 모바일 브라우저의 화면너비 해석 방지)
+                pageEl.style.setProperty('width', pageW, 'important');
+                pageEl.style.setProperty('height', pageH, 'important');
                 pageEl.style.margin = '0';
                 pageEl.style.padding = '0';  /* 모바일 축소 현상 방지를 위해 여백 완전 제거 */
                 pageEl.style.boxSizing = 'border-box';
