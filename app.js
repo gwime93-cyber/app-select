@@ -595,8 +595,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             printStyle.innerHTML = `
                 @media print {
-                    @page { size: A4 ${orientation}; margin: 0mm !important; }
-                    html, body { margin: 0 !important; padding: 0 !important; height: 100% !important; width: 100% !important; background: white !important; }
+                    /* 하단 주소/날짜 강제 제거 시도 */
+                    @page { size: A4 ${orientation}; margin: 0 !important; }
+                    html, body { margin: 0 !important; padding: 0 !important; width: ${pageW} !important; height: ${pageH} !important; overflow: hidden !important; background: white !important; }
                 }
             `;
 
