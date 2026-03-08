@@ -878,10 +878,10 @@ button {
         overflow: hidden;
         gap: 0;
         padding: 0;
-        /* 중앙 정렬을 위해 auto 적용, 규격은 JS에서 주입 */
-        margin: 0 auto !important;
-        position: relative !important;
-        display: grid !important;
+        /* iOS 모바일 인쇄 축소 방지 핵심: 절대 좌표 고정 (수치는 JS에서 주입) */
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
         page-break-after: always;
         break-after: page;
         page-break-inside: avoid;
