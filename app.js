@@ -585,12 +585,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // 📱 기기 감지 (아이폰, 아이패드, 안드로이드 포함 모바일 감지)
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-            // PC는 표준 A4(210x297)를 사용하고, 모바일은 여백 오류 방지를 위해 281mm(최종 최적화 규격) 사용
+            // PC는 표준 A4(210x297)를 사용하고, 모바일은 여백 오류 방지를 위해 277mm(요청 규격) 사용
             let pageW, pageH;
             if (isMobile) {
-                // 281mm는 모바일 기기에서 2페이지로 넘어가지 않고 꽉 차게 나오는 가장 안정적인 규격입니다.
-                pageW = orientation === 'portrait' ? '199mm' : '281mm';
-                pageH = orientation === 'portrait' ? '281mm' : '199mm';
+                // 277mm는 아이패드 등에서 상하단 여백이 있어도 2페이지로 넘어가지 않는 가장 안전한 규격입니다.
+                pageW = orientation === 'portrait' ? '196mm' : '277mm';
+                pageH = orientation === 'portrait' ? '277mm' : '196mm';
             } else {
                 pageW = orientation === 'portrait' ? '210mm' : '297mm';
                 pageH = orientation === 'portrait' ? '297mm' : '210mm';
