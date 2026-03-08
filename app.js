@@ -582,9 +582,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
             // A4 실제 mm 치수 (브라우저의 마진 간섭 없이 종이를 꽉 채우기 위해 JS에서 직접 주입)
-            // A4 표준 mm 치수 (정확한 규격을 주어야 브라우저가 축소하지 않음)
-            const pageW = orientation === 'portrait' ? '210mm' : '297mm';
-            const pageH = orientation === 'portrait' ? '297mm' : '210mm';
+            // 📱 기기 감지 (아이폰, 아이패드, 안드로이드 포함 모바일 감지)
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+            // PC는 표준 A4(210x297)를 사용하고, 모바일은 여백 오류 방지를 위해 3% 정도 줄인 안전 규격 사용
+            let pageW, pageH;
+            if (isMobile) {
+                pageW = orientation === 'portrait' ? '204mm' : '286mm';
+                pageH = orientation === 'portrait' ? '286mm' : '204mm';
+            } else {
+                pageW = orientation === 'portrait' ? '210mm' : '297mm';
+                pageH = orientation === 'portrait' ? '297mm' : '210mm';
+            }
 
             // @page 규칙: 여백 0, A4 크기 고정
             let printStyle = document.getElementById('dynamic-print-style');
