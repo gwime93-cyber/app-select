@@ -582,9 +582,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
             // A4 실제 mm 치수 (브라우저의 마진 간섭 없이 종이를 꽉 채우기 위해 JS에서 직접 주입)
-            // iOS/모바일의 강제 여백을 무력화하기 위해 실제 규격보다 1mm 더 크게 설정하여 여백을 덮어씌움
-            const pageW = orientation === 'portrait' ? '211mm' : '298mm';
-            const pageH = orientation === 'portrait' ? '298mm' : '211mm';
+            // A4 표준 mm 치수 (정확한 규격을 주어야 브라우저가 축소하지 않음)
+            const pageW = orientation === 'portrait' ? '210mm' : '297mm';
+            const pageH = orientation === 'portrait' ? '297mm' : '210mm';
 
             // @page 규칙: 여백 0, A4 크기 고정
             let printStyle = document.getElementById('dynamic-print-style');
@@ -612,11 +612,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 pageEl.setAttribute('data-card-type', cardType);
                 pageEl.setAttribute('data-border', borderStyle);
 
-                // 핵심: 종이 크기를 인라인 스타일로 직접 지정 (vw/vh/mm 브라우저 해석 차이 완전 우회)
+                // 핵심: 종이 크기를 인라인 스타일로 직접 지정
                 pageEl.style.width = pageW;
                 pageEl.style.height = pageH;
                 pageEl.style.margin = '0';
-                pageEl.style.padding = '2mm';  /* 외곽선이 종이 끝에서 잘리지 않도록 */
+                pageEl.style.padding = '0';  /* 모바일 축소 현상 방지를 위해 여백 완전 제거 */
                 pageEl.style.boxSizing = 'border-box';
                 pageEl.style.overflow = 'hidden';
 

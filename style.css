@@ -881,7 +881,9 @@ button {
         page-break-after: always;
         break-after: page;
         page-break-inside: avoid;
-        /* 모바일 기기 브라우저의 인쇄 최적화 */
+        /* iOS 모바일 대응: 종이에 꽉 차도록 강제 크기 지정 */
+        width: 100vw !important;
+        height: 100vh !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
