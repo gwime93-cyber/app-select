@@ -874,14 +874,16 @@ button {
         box-sizing: border-box;
         overflow: hidden;
         gap: 0;
-        padding: 2mm;
-        width: 100vw !important;
-        height: 100vh !important;
+        padding: 0;
+        /* 강제 패딩 제거 */
         margin: 0 !important;
         position: relative;
         page-break-after: always;
         break-after: page;
         page-break-inside: avoid;
+        /* 모바일 기기 브라우저의 인쇄 최적화 */
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
 
     /* 방향별 width/height는 vw/vh가 자동으로 처리하므로 별도 설정 불필요 */
@@ -934,13 +936,14 @@ button {
 
     /* 개별 카드 */
     .print-slot {
-        border: 1.5pt dashed #555;
+        border: 1pt dashed #555;
         /* 기본: 점선 */
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 4mm;
+        padding: 2mm;
+        /* 외부 여백 대신 내부 패딩 조정 */
         box-sizing: border-box;
         page-break-inside: avoid;
         overflow: hidden;

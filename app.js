@@ -582,8 +582,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
             // A4 실제 mm 치수 (브라우저의 마진 간섭 없이 종이를 꽉 채우기 위해 JS에서 직접 주입)
-            const pageW = orientation === 'portrait' ? '210mm' : '297mm';
-            const pageH = orientation === 'portrait' ? '297mm' : '210mm';
+            // iOS/모바일의 강제 여백을 무력화하기 위해 실제 규격보다 1mm 더 크게 설정하여 여백을 덮어씌움
+            const pageW = orientation === 'portrait' ? '211mm' : '298mm';
+            const pageH = orientation === 'portrait' ? '298mm' : '211mm';
 
             // @page 규칙: 여백 0, A4 크기 고정
             let printStyle = document.getElementById('dynamic-print-style');
@@ -594,8 +595,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             printStyle.innerHTML = `
                 @media print {
-                    @page { size: A4 ${orientation}; margin: 0 !important; }
-                    html, body { margin: 0 !important; padding: 0 !important; }
+                    @page { size: A4 ${orientation}; margin: 0mm !important; }
+                    html, body { margin: 0 !important; padding: 0 !important; height: 100% !important; width: 100% !important; background: white !important; }
                 }
             `;
 
