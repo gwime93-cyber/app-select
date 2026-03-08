@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선택 앱 (Choice App) - iPad 최적화</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+    <div id="app" class="app-container">
+
+        <!-- Home View -->
+        <div id="home-view" class="view active">
+            <header class="app-header">
+                <h1>무엇을 고를까요?</h1>
+                <p>원하는 방식을 선택해주세요.</p>
+            </header>
+            <main class="home-main">
+                <button id="mode-weather-btn" class="menu-btn card-btn">
+                    <span class="icon">⛅️</span>
+                    <div class="menu-text">
+                        <h3>날씨 선택하기</h3>
+                        <p>맑음, 비 등 날씨 중 하나를 고릅니다.</p>
+                    </div>
+                </button>
+                <button id="mode-photo-btn" class="menu-btn card-btn">
+                    <span class="icon">📸</span>
+                    <div class="menu-text">
+                        <h3>사진/앨범에서 선택</h3>
+                        <p>직접 사진을 찍거나 저장된 이미지를 불러와 선택지를 만듭니다.</p>
+                    </div>
+                </button>
+                <button id="mode-search-btn" class="menu-btn card-btn">
+                    <span class="icon">🔍</span>
+                    <div class="menu-text">
+                        <h3>웹 검색해서 끌어다 놓기</h3>
+                        <p>듀얼모드(스플릿 뷰)로 검색엔진을 띄워 이미지를 검색하고 이곳으로 스윽 끌어다 놓으세요.</p>
+                    </div>
+                </button>
+
+                <button id="mode-collection-btn" class="menu-btn card-btn"
+                    style="border-color: rgba(245, 158, 11, 0.5); background: rgba(245, 158, 11, 0.1);">
+                    <span class="icon">🗂️</span>
+                    <div class="menu-text">
+                        <h3 style="color: #f59e0b;">내 보관함 열기</h3>
+                        <p>설정 중에 저장해 둔 카드 결과들을 확인하고 인쇄하세요.</p>
+                    </div>
+                </button>
+            </main>
+        </div>
+
+        <!-- 1. Weather Setup View -->
+        <div id="weather-setup-view" class="view">
+            <header class="app-header">
+                <h1>⛅️ 날씨에서 선택</h1>
+                <p>포함할 날씨를 2개 이상 체크하세요. (최대 4개)</p>
+            </header>
+            <main class="setup-main">
+                <div class="weather-options">
+                    <label class="toggle-label"><input type="checkbox" class="weather-chk" value="맑음" data-img="☀️"
+                            checked>
+                        <span class="chk-box">
+                            <span class="weather-emoji-large">☀️</span>
+                            <span class="weather-name">맑음</span>
+                        </span>
+                    </label>
+                    <label class="toggle-label"><input type="checkbox" class="weather-chk" value="구름" data-img="☁️"
+                            checked>
+                        <span class="chk-box">
+                            <span class="weather-emoji-large">☁️</span>
+                            <span class="weather-name">구름</span>
+                        </span>
+                    </label>
+                    <label class="toggle-label"><input type="checkbox" class="weather-chk" value="비" data-img="🌧️"
+                            checked>
+                        <span class="chk-box">
+                            <span class="weather-emoji-large">🌧️</span>
+                            <span class="weather-name">비</span>
+                        </span>
+                    </label>
+                    <label class="toggle-label"><input type="checkbox" class="weather-chk" value="눈" data-img="❄️"
+                            checked>
+                        <span class="chk-box">
+                            <span class="weather-emoji-large">❄️</span>
+                            <span class="weather-name">눈</span>
+                        </span>
+                    </label>
+                    <label class="toggle-label"><input type="checkbox" class="weather-chk" value="바람" data-img="💨">
+                        <span class="chk-box">
+                            <span class="weather-emoji-large">💨</span>
+                            <span class="weather-name">바람</span>
+                        </span>
+                    </label>
+                    <label class="toggle-label"><input type="checkbox" class="weather-chk" value="흐린뒤 갬" data-img="⛅️">
+                        <span class="chk-box">
+                            <span class="weather-emoji-large">⛅️</span>
+                            <span class="weather-name">흐린뒤 갬</span>
+                        </span>
+                    </label>
+                    <label class="toggle-label"><input type="checkbox" class="weather-chk" value="추움" data-img="🥶">
+                        <span class="chk-box">
+                            <span class="weather-emoji-large">🥶</span>
+                            <span class="weather-name">추움</span>
+                        </span>
+                    </label>
+                    <label class="toggle-label"><input type="checkbox" class="weather-chk" value="더움" data-img="🥵">
+                        <span class="chk-box">
+                            <span class="weather-emoji-large">🥵</span>
+                            <span class="weather-name">더움</span>
+                        </span>
+                    </label>
+                    <label class="toggle-label"><input type="checkbox" class="weather-chk" value="습함" data-img="💦">
+                        <span class="chk-box">
+                            <span class="weather-emoji-large">💦</span>
+                            <span class="weather-name">습함</span>
+                        </span>
+                    </label>
+                    <label class="toggle-label"><input type="checkbox" class="weather-chk" value="건조" data-img="🌵">
+                        <span class="chk-box">
+                            <span class="weather-emoji-large">🌵</span>
+                            <span class="weather-name">건조</span>
+                        </span>
+                    </label>
+                </div>
+            </main>
+            <footer class="app-footer" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <button id="weather-start-btn" class="btn-primary" disabled>선택 시작하기</button>
+                <div style="display: flex; gap: 0.5rem; justify-content: center;">
+                    <button id="weather-reset-btn" class="btn-text" style="margin-top: 0; width: auto;">🔄 선택
+                        초기화</button>
+                    <button class="btn-text go-home-btn" style="margin-top: 0; width: auto;">🏠 홈으로 가기</button>
+                </div>
+            </footer>
+        </div>
+
+        <!-- 2. Photo & Album Setup View -->
+        <div id="photo-setup-view" class="view">
+            <header class="app-header">
+                <h1>🖼️ 사진/앨범에서 선택</h1>
+                <p>사진을 찍거나 앨범에서 불러와 2개 이상의 선택지를 추가하세요. (최대 4개)</p>
+            </header>
+            <main class="setup-main">
+                <div class="choices-container" id="photo-choices-container">
+                    <!-- 동적 추가 -->
+                </div>
+            </main>
+            <footer class="app-footer" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <button id="photo-start-btn" class="btn-primary" disabled>선택 시작하기</button>
+                <div style="display: flex; gap: 0.5rem; justify-content: center;">
+                    <button id="photo-reset-btn" class="btn-text" style="margin-top: 0; width: auto;">🔄 입력 초기화</button>
+                    <button class="btn-text go-home-btn" style="margin-top: 0; width: auto;">🏠 홈으로 가기</button>
+                </div>
+            </footer>
+        </div>
+
+        <!-- 3. Search Setup View -->
+        <div id="search-setup-view" class="view">
+            <header class="app-header">
+                <h1>🔍 웹 검색 & 끌어다 놓기</h1>
+                <p>듀얼모드(스플릿 뷰)로 검색엔진을 띄우고,<br>검색된 이미지를 꾹 눌러 빈칸으로 2개 이상 끌어다(Drag) 놓으세요!</p>
+            </header>
+            <main class="setup-main">
+                <div class="search-bar">
+                    <input type="text" id="image-search-input" placeholder="검색어 (예: 뽀로로, 뿡뿡이)">
+                    <button id="image-search-btn" class="btn-secondary search-btn-inner">구글 검색 열기</button>
+                </div>
+                <!-- 드래그 앤 드롭 슬롯 4개 -->
+                <p class="section-title" style="margin-top: 1rem; text-align: center;">👇 여기에 이미지를 끌어다 놓으세요 👇</p>
+                <div class="choices-container" id="search-choices-container">
+                    <!-- 동적 추가 -->
+                </div>
+            </main>
+            <footer class="app-footer" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <button id="search-start-btn" class="btn-primary" disabled>선택 시작하기</button>
+                <div style="display: flex; gap: 0.5rem; justify-content: center;">
+                    <button id="search-reset-btn" class="btn-text" style="margin-top: 0; width: auto;">🔄 결과
+                        초기화</button>
+                    <button class="btn-text go-home-btn" style="margin-top: 0; width: auto;">🏠 홈으로 가기</button>
+                </div>
+            </footer>
+        </div>
+
+        <!-- Play View (공통) -->
+        <div id="play-view" class="view">
+            <header class="app-header">
+                <h1>궁극의 선택! 💎</h1>
+                <p>보관함에 저장할 가장 마음에 드는 하나를 골라보세요!</p>
+            </header>
+            <main class="play-main" id="play-choices-container">
+            </main>
+            <div
+                style="width: 100%; max-width: 320px; margin: 1.5rem auto 0; display: flex; flex-direction: column; gap: 0.8rem;">
+                <button id="back-to-setup-btn" class="btn-primary">🛠️ 사진/이름 다시 준비하기</button>
+                <button class="btn-text go-home-btn">처음부터 다시 시작하기 (홈)</button>
+            </div>
+        </div>
+
+        <!-- Result View (공통) -->
+        <div id="result-view" class="view">
+            <div class="result-content">
+                <h2>당신의 선택! 🎉</h2>
+                <div id="final-choice" class="final-choice-card">
+                    <!-- 텍스트 이모지 또는 이미지 -->
+                    <div class="final-visual-wrapper">
+                        <img id="final-choice-img" src="" alt="선택된 이미지">
+                        <div id="final-choice-emoji" class="emoji-display" hidden></div>
+                    </div>
+                    <h3 id="final-choice-text">결과 텍스트</h3>
+                </div>
+
+                <div style="width: 100%; max-width: 320px; display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button id="re-select-btn" class="btn-primary">🔄 다시 선택하기</button>
+                    <button id="save-result-btn" class="btn-secondary">🗂️ 앨범(보관함)에 저장</button>
+                    <button id="go-to-collection-from-result-btn" class="btn-secondary">📂 보관함 바로가기</button>
+                    <button class="btn-text go-home-btn">홈으로 돌아가기</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Collection View -->
+        <div id="collection-view" class="view">
+            <header class="app-header">
+                <h1>🗂️ 내 보관함</h1>
+                <p>지금까지 저장한 결과들을 모아서 인쇄하세요.</p>
+            </header>
+            <main class="setup-main" style="overflow-y: auto;">
+                <div id="selection-controls"
+                    style="display: none; gap: 0.8rem; margin-bottom: 1rem; padding: 0 0.5rem;">
+                    <button id="select-all-btn" class="btn-secondary" style="flex: 1; padding: 0.6rem;">✅ 전체 선택</button>
+                    <button id="deselect-all-btn" class="btn-secondary" style="flex: 1; padding: 0.6rem;">⬜️ 전체
+                        해제</button>
+                </div>
+                <div class="choices-container" id="collection-grid">
+                    <!-- 보관된 카드들 동적 표시 -->
+                </div>
+                <p id="empty-collection-msg" style="text-align: center; color: var(--text-secondary); padding: 2rem;">
+                    보관된 카드가 없습니다.</p>
+            </main>
+            <footer class="app-footer">
+                <div class="print-options"
+                    style="margin-bottom: 0.8rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; background: rgba(255, 255, 255, 0.05); padding: 0.8rem; border-radius: 12px;">
+                    <label for="print-layout-select" style="font-size: 0.95rem; font-weight: 600;">🖨️ 인쇄 칸 수:</label>
+                    <select id="print-layout-select"
+                        style="flex: 1; padding: 0.5rem; border-radius: 8px; background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); outline: none;">
+                        <option value="8" style="color: black;">8분할 (작게 8장)</option>
+                        <option value="6" style="color: black;">6분할 (중간 6장)</option>
+                        <option value="4" style="color: black;">4분할 (크게 4장)</option>
+                        <option value="2" style="color: black;">2분할 (아주 크게 2장)</option>
+                    </select>
+                </div>
+                <div class="print-options"
+                    style="margin-bottom: 0.8rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; background: rgba(255, 255, 255, 0.05); padding: 0.8rem; border-radius: 12px;">
+                    <label for="print-orientation-select" style="font-size: 0.95rem; font-weight: 600;">📄 용지
+                        방향:</label>
+                    <select id="print-orientation-select"
+                        style="flex: 1; padding: 0.5rem; border-radius: 8px; background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); outline: none;">
+                        <option value="portrait" style="color: black;">종이 세로 (Portrait)</option>
+                        <option value="landscape" style="color: black;">종이 가로 (Landscape)</option>
+                    </select>
+                </div>
+                <div class="print-options"
+                    style="margin-bottom: 0.8rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; background: rgba(255, 255, 255, 0.05); padding: 0.8rem; border-radius: 12px;">
+                    <label for="print-card-type-select" style="font-size: 0.95rem; font-weight: 600;">🃏 카드 형태:</label>
+                    <select id="print-card-type-select"
+                        style="flex: 1; padding: 0.5rem; border-radius: 8px; background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); outline: none;">
+                        <option value="vertical" style="color: black;" selected>세로형 카드 (세로용지용 회전)</option>
+                        <option value="horizontal" style="color: black;">가로형 카드 (가로용지용 회전)</option>
+                    </select>
+                </div>
+                <div class="print-options"
+                    style="margin-bottom: 0.8rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; background: rgba(255, 255, 255, 0.05); padding: 0.8rem; border-radius: 12px;">
+                    <label for="print-border-select" style="font-size: 0.95rem; font-weight: 600;">✂️ 테두리 선:</label>
+                    <select id="print-border-select"
+                        style="flex: 1; padding: 0.5rem; border-radius: 8px; background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); outline: none;">
+                        <option value="dashed" style="color: black;">점선 (커팅 가이드)</option>
+                        <option value="solid" style="color: black;">실선 (진하게)</option>
+                        <option value="none" style="color: black;">테두리 없음</option>
+                    </select>
+                </div>
+                <button id="print-collection-btn" class="btn-primary" style="margin-bottom: 0.5rem;" disabled>인쇄
+                    시작하기</button>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button id="back-from-collection-btn" class="btn-secondary" style="flex: 1;">⬅️ 이전 화면으로</button>
+                        <button id="clear-collection-btn" class="btn-secondary" style="flex: 1;">🗑️ 보관함 비우기</button>
+                    </div>
+                    <button class="btn-text go-home-btn">홈으로 돌아가기 (종료)</button>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- 사진 선택지 및 드래그 앤 드롭 템플릿 -->
+    <template id="photo-choice-template">
+        <div class="choice-card">
+            <div class="image-upload-wrapper drop-zone">
+                <!-- 카메라 촬영용 input (capture 속성 포함) -->
+                <input type="file" class="choice-image-input choice-camera-input" accept="image/*" capture="environment"
+                    hidden>
+                <!-- 앨범(갤러리) 선택용 input -->
+                <input type="file" class="choice-image-input choice-album-input" accept="image/*" hidden>
+
+                <div class="image-preview-area">
+                    <div class="upload-placeholder">
+                        <div class="photo-upload-btns">
+                            <!-- mode에 따라 버튼 노출 여부를 동적으로 제할 수 있음 -->
+                            <button type="button" class="btn-camera-trigger photo-source-btn">
+                                📷 카메라
+                            </button>
+                            <button type="button" class="btn-album-trigger photo-source-btn">
+                                🖼️ 앨범
+                            </button>
+                        </div>
+                        <span class="upload-guide-text"
+                            style="font-size: 0.75rem; color: var(--text-secondary); text-align: center; margin-top: 0.5rem;">또는
+                            이미지를 끌어다 놓으세요</span>
+                    </div>
+                    <img class="image-preview" src="" alt="미리보기" hidden>
+                </div>
+            </div>
+            <input type="text" class="choice-text-input" placeholder="이름 입력" autocomplete="off">
+        </div>
+    </template>
+
+    <!-- 인쇄 전용 영역 (평소에는 숨김) -->
+    <div id="print-area"></div>
+
+</body>
+
+</html>
